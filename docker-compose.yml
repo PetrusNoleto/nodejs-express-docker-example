@@ -1,0 +1,18 @@
+services:
+  server:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    working_dir: /home/example/server
+    volumes:
+      - server-volume:/home/example/server
+    ports:
+      - "80:80"
+    networks:
+      - example-server-network
+    entrypoint: ["/home/example/server/initserver.sh"]
+volumes:
+  server-volume:
+networks:
+  example-server-network:
+    driver: bridge
